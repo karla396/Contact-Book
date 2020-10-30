@@ -1,0 +1,51 @@
+﻿<h2>Contact</h2>
+<p style="text-align: end">
+   <a href="#/addContact" class=" btn btn-primary">Create new contact</a>
+</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+       List Contacts
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group pull-left">
+                    <label>Search</label>
+                    <label>
+                        <input type="text" class="form-control" ng-model="searchText"/>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th ng-click="sortBy('Name')">
+                     Name
+                    <span class="glyphicon" ng-show="sortColumn=='Name'" ng-class="{'glyphicon-triangle-top':!reverse,'glyphicon-triangle-bottom': reverse}"></span>
+                    </th>
+                    <th>LastName</th>
+                    <th>Telephone</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="i in contacts | filter: searchText | orderBy: sortColumn: reverse" >
+                    <td>{{i.Name}}</td>
+                    <td>{{i.LastName}}</td>
+                    <td>{{i.PhoneNumber}}</td>
+                    <td>
+                        <a href="#/editContact/{{i.Id}}">Edit</a> |
+                        <a href="" ng-click="deleteContact(i.Id)">Delete</a>
+                    </td>
+                </tr>
+                <tr ng-if="!contacts || (contacts | filter: searchText).length == 0">
+                    <td colspan="4" style="text-align:center">
+                        No contacts data to display
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

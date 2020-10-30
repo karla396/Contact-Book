@@ -1,0 +1,41 @@
+﻿<h2>Update</h2>
+<form class="form-horizontal" name="frmEditContact" ng-submit="updateContact(contact)" novalidate>
+    <h4>Update current contact</h4>
+    <hr />
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" name="name" ng-model="contact.Name" ng-maxlength="40" required />
+            <span class="text-danger" ng-show="(frmEditContact.name.$touched || frmEditContact.name.$dirty ) && frmEditContact.name.$invalid">
+                <span ng-show="frmEditContact.name.$error.required">Name is required</span>
+                <span ng-show="frmEditContact.name.$error.maxlength">Name must be less than or equals to 40</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Lastname</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" name="lastName" ng-model="contact.LastName" ng-maxlength="40" required />
+            <span class="text-danger" ng-show="(frmEditContact.lastName.$touched || frmEditContact.lastName.$dirty ) && frmEditContact.lastName.$invalid">
+                <span ng-show="frmEditContact.lastName.$error.required">Last Name is required</span>
+                <span ng-show="frmEditContact.lastName.$error.maxlength">Last Name must be less than or equals to 40</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Telephone</label>
+        <div class="col-lg-10">
+            <input type="tel" class="form-control" name="phoneNumber" ng-model="contact.PhoneNumber" maxlength="10" required />
+            <span class="text-danger" ng-show="(frmEditContact.phoneNumber.$touched || frmEditContact.phoneNumber.$dirty ) && frmEditContact.phoneNumber.$invalid">
+                <span ng-show="frmEditContact.phoneNumber.$error.required">Invalid telephone number </span>
+                <span ng-show="frmEditContact.phoneNumber.$error.maxlength">10 digitos</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <input type="submit" class="btn btn-success" value="Update" ng-if="states.showUpdateButton" ng-disabled="frmEditContact.$pristine || frmEditContact.$invalid "/>
+            <a href="#/" class="btn btn-default">Cancel</a>
+        </div>
+    </div>
+</form>
